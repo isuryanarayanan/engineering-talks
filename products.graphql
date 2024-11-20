@@ -1,0 +1,24 @@
+# Products Schema (products_schema.graphql)
+
+# The Product type is marked as an entity that can be referenced by other services
+type Product @key(fields: "id") {
+  id: Int!
+  name: String!
+  description: String!
+  price: Float!
+}
+
+# Queries for fetching products
+type Query {
+  # Fetch all products
+  allProducts: [Product!]!
+
+  # Fetch a specific product by its ID
+  getProduct(id: Int!): Product
+}
+
+# Mutations for managing products
+type Mutation {
+  # Add a new product to the system
+  addProduct(name: String!, description: String!, price: Float!): Product!
+}

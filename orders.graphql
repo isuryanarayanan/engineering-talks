@@ -1,0 +1,28 @@
+# Orders Schema (orders_schema.graphql)
+
+# The Product type is defined as an external entity from the Products Service
+type Product @key(fields: "id") {
+  id: Int!
+}
+
+# The Order type is an entity and references Product from the Products service
+type Order @key(fields: "id") {
+  id: Int!
+  products: [Product!]!  # List of products from the Products Service
+  total: Float!
+}
+
+# Queries for fetching orders
+type Query {
+  # Fetch all orders
+  allOrders: [Order!]!
+
+  # Fetch a specific order by its ID
+  getOrder(id: Int!): Order
+}
+
+# Mutations for creating new orders
+type Mutation {
+  # Create a new order by providing a list of product IDs
+  createOrder(productIds: [Int!]!): Order!
+}

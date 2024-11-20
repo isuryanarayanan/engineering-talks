@@ -1,0 +1,69 @@
+"""
+Represents an order made by a user.
+"""
+type Order {
+    id: Int!
+    charge: Float!
+}
+
+"""
+Represents a user's wallet.
+"""
+type Wallet {
+    id: Int!
+    balance: Float!
+}
+
+"""
+Represents a permission assigned to a user.
+"""
+type Permission {
+    id: Int!
+    name: String!
+}
+
+"""
+Input type for creating an order.
+"""
+input CreateOrderInput {
+    charge: Float!
+}
+
+type Mutation {
+    """
+    Creates a new order with the specified charge.
+    """
+    createOrder(input: CreateOrderInput!): Order!
+}
+
+type Query {
+    """
+    Retrieves all orders.
+    """
+    allOrders: [Order!]!
+    
+    """
+    Retrieves a specific order by its ID.
+    """
+    getOrder(id: Int!): Order
+    
+    """
+    Retrieves all wallets.
+    """
+    allWallets: [Wallet!]!
+    
+    """
+    Retrieves a specific wallet by its ID.
+    """
+    getWallet(id: Int!): Wallet
+    
+    """
+    Retrieves all permissions.
+    """
+    allPermissions: [Permission!]!
+    
+    """
+    Retrieves a specific permission by its ID.
+    """
+    getPermission(id: Int!): Permission
+}
